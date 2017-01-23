@@ -1,0 +1,6 @@
+# Variables are documented in hack/build.sh.
+VERSIONS = gradle-2.6
+OPENSHIFT_NAMESPACES = 3.3
+
+# Include common Makefile code.
+include hack/common.mk
