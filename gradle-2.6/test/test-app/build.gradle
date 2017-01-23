@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+
+group = 'org.jboss.quickstarts.eap'
+version = '6.4.0.GA'
+
+description = "JBoss EAP Quickstart: kitchensink"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+war {
+    archiveName = project.property('warName')
+}
+
+repositories {
+        
+     maven { url "http://maven.repository.redhat.com/earlyaccess/all/" }
+     maven { url "http://maven.repository.redhat.com/techpreview/all" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    providedCompile(group: 'javax.enterprise', name: 'cdi-api', version:'1.0.0.SP4-redhat-5') {
+exclude(module: 'jboss-interceptor-api')
+exclude(module: 'jsr250-api')
+    }
+    providedCompile group: 'org.jboss.spec.javax.annotation', name: 'jboss-annotations-api_1.1_spec', version:'1.0.1.Final-redhat-3'
+    providedCompile group: 'org.jboss.spec.javax.ws.rs', name: 'jboss-jaxrs-api_1.1_spec', version:'1.0.1.Final-redhat-3'
+    providedCompile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final-redhat-3'
+    providedCompile group: 'org.jboss.spec.javax.ejb', name: 'jboss-ejb-api_3.1_spec', version:'1.0.2.Final-redhat-3'
+    providedCompile(group: 'org.hibernate', name: 'hibernate-validator', version:'4.3.2.Final-redhat-2') {
+exclude(module: 'slf4j-api')
+    }
+    providedCompile group: 'org.jboss.spec.javax.faces', name: 'jboss-jsf-api_2.1_spec', version:'2.1.28.Final-redhat-1'
+    providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
+    providedCompile group: 'org.hibernate', name: 'hibernate-validator-annotation-processor', version:'4.3.2.Final-redhat-2'
+}
